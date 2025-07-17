@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMFAM – The Memecoin Movement!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&family=Chakra+Petch:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Keyframe for continuous rotation */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* General Body and Font Styles */
+        body {
+            margin: 0;
+            font-family: 'Chakra Petch', sans-serif; /* Spicy and sweet new font */
+            color: #5A3D3C; /* Dark brown text for light theme */
+            background-color: #F8F0E3; /* Very light beige/off-white background to blend with image */
+            line-height: 1.6; /* Improved readability */
+        }
+
+        /* Section Styling Defaults */
+        .section {
+            padding: 100px 20px; /* Increased padding for more breathing room */
+            text-align: center;
+            position: relative; /* For overlays or internal positioning */
+        }
+        .section-title {
+            font-family: 'Bangers', cursive; /* Spicy font for titles */
+            font-size: 4.5em; /* Larger, more impactful titles */
+            font-weight: normal; /* Bangers is already bold */
+            margin-bottom: 40px;
+            color: #DAA520; /* Gold accent for titles, a bit deeper */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3); /* Softer shadow for lighter background */
+        }
+        .section-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 60px;
+            color: #7A6A5E; /* Slightly darker light brown/gray */
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section Styles (HAMFAM Intro) */
+        .hero-section {
+            background-color: #FFE6A7; /* Lighter gold/cream to match image */
+            position: relative;
+            min-height: 850px; /* Make it taller to showcase the background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #4A2C2A; /* Dark text for contrast */
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2); /* Subtle shadow for readability */
+        }
+        /* Add a subtle overlay for text readability */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1); /* Very light overlay */
+            z-index: 1;
+        }
+        .hero-section > * { /* Ensure content is above the overlay */
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section .main-title {
+            font-family: 'Bangers', cursive; /* Spicy font for main title */
+            font-size: 7em; /* Even larger */
+            font-weight: normal;
+            margin: 20px 0 15px;
+            line-height: 0.9;
+            color: #6B4423; /* Darker brown, inspired by monkey fur */
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4), 8px 8px 15px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+        }
+        .hero-section .subtitle {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            color: #4A2C2A; /* Dark brown */
+            max-width: 900px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+        .hero-section .cta-button {
+            background-color: #8B4513; /* SaddleBrown, a rich brown */
+            color: #FFD700; /* Gold text on brown */
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px; /* Pill shape */
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero-section .cta-button:hover {
+            background-color: #A0522D; /* Lighter SaddleBrown on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.6);
+        }
+        .hero-section .mission-text {
+            font-family: 'Chakra Petch', sans-serif; /* Spicy and sweet new font */
+            font-size: 1.1em;
+            margin-top: 50px;
+            font-style: italic;
+            color: #5A3D3C; /* Dark brown */
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* Features Section Styles */
+        .features-section {
+            background-color: #2C2C2C; /* Darker background to contrast with hero */
+        }
+        .features-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px; /* Space between coin and grid */
+        }
+        .rotating-coin {
+            width: 250px; /* Size of the rotating coin */
+            height: 250px;
+            animation: rotate 10s linear infinite; /* Apply rotation animation */
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(218, 165, 32, 0.6); /* Stronger glow, matching new gold */
+            border-radius: 50%; /* Make it round */
+            object-fit: cover; /* Ensure image covers the area */
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .feature-card {
+            background-color: #3C3C3C; /* Even darker card background */
+            padding: 35px;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid #5C5C5C; /* Subtle dark border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+        .feature-card-title {
+            font-family: 'Bangers', cursive;
+            font-size: 2.2em; /* Larger title for features */
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #DAA520; /* Gold for feature titles */
+            text-transform: uppercase;
+        }
+        .feature-card-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #D3C1B6; /* Lighter beige/gray for content */
+        }
+
+        /* Meme Section Styles */
+        .meme-section {
+            background-color: #2C2C2C; /* Same as features section */
+        }
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .meme-card {
+            background-color: #3C3C3C; /* Same as feature card background */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #5C5C5C;
+        }
+        .meme-card img {
+            width: 100%;
+            height: 250px; /* Slightly larger height for memes */
+            object-fit: contain; /* Ensure the whole meme is visible, not cropped */
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #000; /* Black background for images with transparent areas */
+        }
+        .meme-card p {
+            font-size: 1em;
+            color: #D3C1B6; /* Lighter beige/gray */
+            line-height: 1.5;
+        }
+
+
+        /* How to Buy Section Styles */
+        .buy-section {
+            background-color: #3C3C3C; /* Darker background */
+        }
+        .buy-section .section-title {
+            color: #DAA520; /* Gold */
+        }
+        .buy-section ol {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+        }
+        .buy-section ol li {
+            background-color: #2C2C2C;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #5C5C5C;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .buy-section ol li .step-number {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5em;
+            color: #D2691E; /* Chocolate, a rich orange-brown */
+            flex-shrink: 0;
+            width: 50px;
+            text-align: center;
+        }
+        .buy-section ol li .step-content {
+            font-size: 1.1em;
+            color: #D3C1B6; /* Lighter beige/gray */
+            line-height: 1.6;
+        }
+        .buy-section ol li a {
+            color: #DAA520; /* Gold */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .buy-section ol li a:hover {
+            text-decoration: underline;
+        }
+        .buy-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .buy-image-card {
+            background-color: #2C2C2C;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #5C5C5C;
+        }
+        .buy-image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .buy-image-card p {
+            font-size: 1em;
+            color: #D3C1B6; /* Lighter beige/gray */
+            line-height: 1.5;
+        }
+
+
+        /* Socials & Footer Section */
+        .socials-footer-section {
+            background-color: #1A1A1A; /* Very dark brown/black background */
+            padding: 50px 20px;
+            text-align: center;
+            color: #D3C1B6; /* Lighter beige/gray */
+            font-size: 0.9em;
+        }
+        .socials-footer-section .social-icons {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 2.5em; /* Large icons */
+        }
+        .socials-footer-section .social-icons a {
+            color: #DAA520; /* Gold icons */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .socials-footer-section .social-icons a:hover {
+            color: #FFECB3; /* Lighter gold on hover */
+            transform: translateY(-5px);
+        }
+        .socials-footer-section p {
+            margin-bottom: 10px;
+        }
+        .socials-footer-section .copyright {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #8C8C8C; /* Slightly darker gray */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .section {
+                padding: 40px 10px;
+            }
+            .section-title {
+                font-size: 2.2em;
+                margin-bottom: 20px;
+            }
+            .section-subtitle {
+                font-size: 1em;
+                margin-bottom: 30px;
+            }
+            .hero-section {
+                min-height: 450px;
+            }
+            .hero-section .main-title {
+                font-size: 3em;
+                letter-spacing: 2px;
+            }
+            .hero-section .subtitle {
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+            .hero-section .cta-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .hero-section .mission-text {
+                font-size: 0.9em;
+                margin-top: 30px;
+            }
+            .rotating-coin {
+                width: 120px;
+                height: 120px;
+            }
+            .features-grid, .buy-images-grid, .meme-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .feature-card {
+                padding: 20px;
+            }
+            .feature-card-title {
+                font-size: 1.5em;
+            }
+            .buy-section ol li {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            .buy-section ol li .step-number {
+                margin-bottom: 10px;
+            }
+            .socials-footer-section {
+                padding: 30px 15px;
+            }
+            .socials-footer-section .social-icons {
+                font-size: 1.8em;
+                gap: 10px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 768px) {
+            .section {
+                padding: 60px 15px;
+            }
+            .section-title {
+                font-size: 3em;
+            }
+            .hero-section {
+                min-height: 550px;
+            }
+            .hero-section .main-title {
+                font-size: 4em;
+            }
+            .hero-section .subtitle {
+                font-size: 1.2em;
+            }
+            .hero-section .cta-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .rotating-coin {
+                width: 180px;
+                height: 180px;
+            }
+            .features-grid, .buy-images-grid, .meme-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            .buy-section ol li {
+                padding: 20px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 992px) {
+            .section {
+                padding: 80px 20px;
+            }
+            .section-title {
+                font-size: 3.8em;
+            }
+            .hero-section .main-title {
+                font-size: 5.5em;
+            }
+            .hero-section .subtitle {
+                font-size: 1.6em;
+            }
+            .rotating-coin {
+                width: 200px;
+                height: 200px;
+            }
+            .features-grid, .buy-images-grid, .meme-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (min-width: 993px) {
+            .section {
+                padding: 100px 20px;
+            }
+            .section-title {
+                font-size: 4.5em;
+            }
+            .hero-section .main-title {
+                font-size: 7em;
+            }
+            .hero-section .subtitle {
+                font-size: 1.8em;
+            }
+            .rotating-coin {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="section hero-section">
+        <img src="hamfam.jpg" alt="HAMFAM Logo" class="rotating-coin">
+        <div class="main-title">HAMFAM</div>
+        <div class="subtitle">The Memecoin Movement! 🚀</div>
+        <p class="mission-text">🚨 HAMFAM IS TAKING OFF – DON'T MISS THE WAVE! 🚨 The time is NOW. The charts are heating up, the community is on fire, and the HAMFAM rocket is fueling for liftoff. This isn’t just another memecoin — this is a movement, a family, a force that refuses to be ignored. 💥</p>
+        <a href="https://t.me/hamfamily420" class="cta-button">GET HAMFAM NOW!</a>
+        <p class="mission-text">HAMFAM is here to shake the memecoin space to its core. We’re not just throwing ham—we're throwing massive gains your way. 🐷💸 The early believers are already celebrating, but the real fireworks haven’t even started. If you’re reading this, YOU’RE STILL EARLY. You’ve got one shot to join the family before HAMFAM goes parabolic. The FOMO is real. The energy is raw. This is your invite to APE IN NOW before the next leg up. The window is small. The opportunity is massive. The HAMFAM train is leaving the station—either you're on it or you're chasing it. 🚀</p>
+    </div>
+
+    <div class="section features-section">
+        <h1 class="section-title">💡 WHY HAMFAM?</h1>
+        <div class="container features-content">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h2 class="feature-card-title">Community-backed</h2>
+                    <p class="feature-card-content">We are a family, backing each other always. 💎🙌</p>
+                </div>
+                <div class="feature-card">
+                    <h2 class="feature-card-title">Zero Chill</h2>
+                    <p class="feature-card-content">Full send mentality, no holding back.</p>
+                </div>
+                <div class="feature-card">
+                    <h2 class="feature-card-title">Infinite Meme Power</h2>
+                    <p class="feature-card-content">From branding to burn, everything screams internet culture.</p>
+                </div>
+                <div class="feature-card">
+                    <h2 class="feature-card-title">Massive Gains Ahead</h2>
+                    <p class="feature-card-content">Not just throwing ham, throwing massive gains your way. 🐷💸</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section meme-section">
+        <h1 class="section-title">🐷 HAMFAM MEMES 🚀</h1>
+        <div class="container">
+            <p class="section-subtitle">Get a taste of the HAMFAM vibe! Here are some of our favorite memes circulating in the community. Got a good one? Share it with us on social media!</p>
+            <div class="meme-grid">
+                <div class="meme-card">
+                    <img src="hamfam.jpg" alt="HAMFAM meme graphic">
+                    <p>A meme graphic featuring the HAMFAM character, ready for liftoff!</p>
+                </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="section buy-section" id="buy-mombo-section">
+        <h1 class="section-title">HOW TO BUY HAMFAM</h1>
+        <div class="container">
+            <p class="section-subtitle">Ready to join the HAMFAM? Follow these simple steps to grab your bag!</p>
+            <ol>
+                <li>
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Download Phantom Wallet:</strong> Phantom is the leading Solana wallet. You can download it for your browser or mobile device from the official website: <a href="https://phantom.app/" target="_blank">phantom.app</a>.
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Fund your Wallet:</strong> Deposit SOL (Solana) into your Phantom wallet. You can buy SOL on most major exchanges like Binance, Coinbase, or Kraken and then withdraw it to your Phantom wallet.
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Go to Raydium (or Jupiter):</strong> Navigate to a decentralized exchange on Solana, such as Raydium or Jupiter. These platforms allow you to swap SOL for other tokens.
+                        <ul>
+                            <li>Raydium: <a href="https://raydium.io/swap/" target="_blank">raydium.io/swap</a></li>
+                            <li>Jupiter: <a href="https://jup.ag/" target="_blank">jup.ag</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>Connect your Wallet:</strong> Connect your Phantom wallet to Raydium or Jupiter. Look for a "Connect Wallet" button, usually in the top right corner.
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <strong>Swap SOL for HAMFAM:</strong> In the swap interface, select SOL as the "From" token and paste the HAMFAM contract address as the "To" token. *Always double-check the contract address from official sources!*
+                        <br>HAMFAM Contract Address: <code>[PASTE_HAMFAM_CONTRACT_ADDRESS_HERE]</code>
+                    </div>
+                </li>
+                <li>
+                    <span class="step-number">6</span>
+                    <div class="step-content">
+                        <strong>Confirm Transaction:</strong> Enter the amount of SOL you want to swap for HAMFAM, review the transaction details, and confirm it in your Phantom wallet.
+                    </div>
+                </li>
+            </ol>
+            <div class="buy-images-grid">
+                <div class="buy-image-card">
+                    <img src="placeholder1.jpg" alt="Wallet Screenshot">
+                    <p>A screenshot showing a wallet interface with SOL balance.</p>
+                </div>
+                <div class="buy-image-card">
+                    <img src="placeholder2.jpg" alt="DEX Swap Screenshot">
+                    <p>A screenshot of a DEX swap interface ready for token exchange.</p>
+                </div>
+                <div class="buy-image-card">
+                    <img src="placeholder3.jpg" alt="HAMFAM Chart">
+                    <p>A hypothetical chart showing HAMFAM's positive performance.</p>
+                </div>
+            </div>
+            <p class="section-subtitle" style="margin-top: 50px;">So kick back, grab your bag, and let’s ride. Because when HAMFAM moves, it grooves. 💃🚀</p>
+        </div>
+    </div>
+
+    <div class="socials-footer-section">
+        <div class="social-icons">
+            <a href="https://x.com/hamfam740151?s=21" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
+            <a href="https://t.me/hamfamily420" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            
+        </div>
+        <p>POWERING THE NEXT GENERATION OF DECENTRALIZED MEMES.</p>
+        <p>JOIN THE HAMFAM REVOLUTION!</p>
+        <div class="copyright">
+            © 2025 HAMFAM. ALL RIGHTS RESERVED.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
